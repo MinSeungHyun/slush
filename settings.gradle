@@ -1,0 +1,3 @@
+rootProject.name='Slush'
+include ':samples'
+include ':slush'
