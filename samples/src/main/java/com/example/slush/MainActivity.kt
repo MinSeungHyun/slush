@@ -1,11 +1,14 @@
 package com.example.slush
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.item_book.view.*
 import slush.Slush
+
+private const val TAG = "Slush test"
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,6 +28,9 @@ class MainActivity : AppCompatActivity() {
             .setLayoutManager(LinearLayoutManager(this))
             .setOnBindListener { book ->
                 bookName.text = book.name
+            }
+            .setOnItemClickListener { view, position ->
+                Log.d(TAG, "Clicked: $position")
             }
             .into(recyclerView)
     }

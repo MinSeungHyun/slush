@@ -12,9 +12,12 @@ This library is still under development.
 Slush.SingleTypeBuilder<Book>()
     .setItemLayout(R.layout.item_book) // Required
     .setItems(items) // Required
-    .setLayoutManager(LinearLayoutManager(this)) // Optional if layout manager is already set
+    .setLayoutManager(LinearLayoutManager(this)) // Optional (if layout manager is already set)
     .setOnBindListener { book -> // Optional
-        bookName.text = book.name // bookName is an id of TextView in R.layout.item_book
+        bookName.text = book.name // (bookName is an id of TextView in R.layout.item_book)
+    }
+    .setOnItemClickListener { view, position -> // Optional (view: clicked item view, position: clicked item's position)
+        Log.d(TAG, "Clicked: $position")
     }
     .into(recyclerView) // Required (initialize RecyclerView)
 ```
@@ -23,6 +26,8 @@ Slush.SingleTypeBuilder<Book>()
 
 ```kotlin
 data class Book(val name: String)
+
+private const val TAG = "Slush test"
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,14 +41,18 @@ class MainActivity : AppCompatActivity() {
             Book("Book 3")
         )
 
-        Slush.SingleTypeBuilder<Book>()
+        Slush.SingleTypeAdapter<Book>()
             .setItemLayout(R.layout.item_book)
             .setItems(items)
             .setLayoutManager(LinearLayoutManager(this))
             .setOnBindListener { book ->
                 bookName.text = book.name
             }
+            .setOnItemClickListener { view, position ->
+                Log.d(TAG, "Clicked: $position")
+            }
             .into(recyclerView)
     }
 }
 ```
+
