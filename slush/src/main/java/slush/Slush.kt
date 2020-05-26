@@ -4,6 +4,7 @@ import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 import slush.listeners.OnBindListener
+import slush.listeners.OnItemClickListener
 import slush.utils.SlushException
 
 class Slush {
@@ -12,6 +13,7 @@ class Slush {
         private var items: List<ITEM>? = null
         private var layoutManager: RecyclerView.LayoutManager? = null
         private var onBindListener: OnBindListener<ITEM>? = null
+        private var onItemClickListener: OnItemClickListener? = null
 
         fun setItemLayout(@LayoutRes layoutId: Int) = apply {
             this.layoutId = layoutId
@@ -37,6 +39,18 @@ class Slush {
             })
         }
 
+        fun setOnItemClickListener(listener: OnItemClickListener) = apply {
+            onItemClickListener = listener
+        }
+
+        fun setOnItemClickListener(listener: (View, Int) -> Unit) = apply {
+            onItemClickListener = object : OnItemClickListener {
+                override fun onItemClick(view: View, position: Int) {
+                    listener(view, position)
+                }
+            }
+        }
+
         fun into(recyclerView: RecyclerView) {
             recyclerView.layoutManager = layoutManager
 
@@ -44,7 +58,7 @@ class Slush {
                 recyclerView.context,
                 layoutId ?: throw SlushException.LayoutIdNotFoundException(),
                 items ?: throw SlushException.ItemsNotFoundException(),
-                onBindListener
+                onBindListener, onItemClickListener
             )
             recyclerView.adapter = adapter
         }
