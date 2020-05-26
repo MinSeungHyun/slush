@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
             Book("Book 3")
         )
 
-        Slush.SingleTypeBuilder<Book>()
+        Slush.SingleTypeAdapter<Book>()
             .setItemLayout(R.layout.item_book)
             .setItems(items)
             .setLayoutManager(LinearLayoutManager(this))

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import slush.utils.SlushException
 
 class Slush {
-    class SingleTypeBuilder<ITEM> {
+    class SingleTypeAdapter<ITEM> {
         private var layoutId: Int? = null
         private var items: List<ITEM>? = null
         private var layoutManager: RecyclerView.LayoutManager? = null
