@@ -3,6 +3,7 @@ package slush
 import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
+import slush.listeners.OnBindListener
 import slush.utils.SlushException
 
 class Slush {

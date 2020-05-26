@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import slush.listeners.OnBindListener
 
 class BaseAdapter<ITEM> internal constructor(
     private val context: Context,
