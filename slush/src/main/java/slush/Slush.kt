@@ -28,29 +28,27 @@ class Slush {
             this.layoutManager = layoutManager
         }
 
-        fun setOnBindListener(listener: OnBindListener<ITEM>) {
+        fun setOnBindListener(listener: OnBindListener<ITEM>) = apply {
             onBindListener = listener
         }
 
-        fun setOnBindListener(listener: View.(ITEM) -> Unit) = apply {
-            setOnBindListener(object : OnBindListener<ITEM> {
+        fun setOnBindListener(listener: View.(ITEM) -> Unit) = setOnBindListener(
+            object : OnBindListener<ITEM> {
                 override fun View.onBind(item: ITEM) {
                     listener(item)
                 }
             })
-        }
 
         fun setOnItemClickListener(listener: OnItemClickListener) = apply {
             onItemClickListener = listener
         }
 
-        fun setOnItemClickListener(listener: (View, Int) -> Unit) = apply {
-            onItemClickListener = object : OnItemClickListener {
+        fun setOnItemClickListener(listener: (View, Int) -> Unit) = setOnItemClickListener(
+            object : OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
                     listener(view, position)
                 }
-            }
-        }
+            })
 
         fun into(recyclerView: RecyclerView) {
             recyclerView.layoutManager = layoutManager
