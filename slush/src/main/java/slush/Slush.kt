@@ -8,12 +8,13 @@ import slush.listeners.OnItemClickListener
 import slush.utils.SlushException
 
 class Slush {
-    class SingleTypeAdapter<ITEM> {
-        private var layoutId: Int? = null
-        private var items: List<ITEM>? = null
-        private var layoutManager: RecyclerView.LayoutManager? = null
-        private var onBindListener: OnBindListener<ITEM>? = null
+    data class SingleTypeAdapter<ITEM>(
+        private var layoutId: Int? = null,
+        private var items: List<ITEM>? = null,
+        private var layoutManager: RecyclerView.LayoutManager? = null,
+        private var onBindListener: OnBindListener<ITEM>? = null,
         private var onItemClickListener: OnItemClickListener? = null
+    ) {
 
         fun setItemLayout(@LayoutRes layoutId: Int) = apply {
             this.layoutId = layoutId
