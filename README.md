@@ -1,5 +1,7 @@
 # Slush
 
+A simple and easy adapter for RecyclerView
+
 ***No more boilerplate adapters and view holders.***
 
 Slush will make using RecyclerView easy and fast.
@@ -9,7 +11,7 @@ Slush will make using RecyclerView easy and fast.
 This library is still under development.
 
 ```kotlin
-Slush.SingleTypeBuilder<Book>()
+Slush.SingleTypeAdapter<Book>()
     .setItemLayout(R.layout.item_book) // Required
     .setItems(items) // Required
     .setLayoutManager(LinearLayoutManager(this)) // Optional (if layout manager is already set)
