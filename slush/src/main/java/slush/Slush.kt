@@ -7,7 +7,7 @@ import slush.listeners.OnBindListener
 import slush.listeners.OnItemClickListener
 import slush.utils.SlushException
 
-class Slush {
+class Slush private constructor() {
     data class SingleTypeAdapter<ITEM>(
         private var layoutId: Int? = null,
         private var items: List<ITEM>? = null,
