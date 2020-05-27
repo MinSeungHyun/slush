@@ -10,7 +10,7 @@ import slush.Slush
 
 private const val TAG = "Slush test"
 
-class MainActivity : AppCompatActivity() {
+class KotlinExampleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
