@@ -50,7 +50,7 @@ class Slush private constructor() {
                 }
             })
 
-        fun into(recyclerView: RecyclerView) {
+        fun into(recyclerView: RecyclerView): AdapterAppliedResult<ITEM> {
             recyclerView.layoutManager = layoutManager
 
             val adapter = BaseAdapter(
@@ -60,6 +60,8 @@ class Slush private constructor() {
                 onBindListener, onItemClickListener
             )
             recyclerView.adapter = adapter
+
+            return AdapterAppliedResult(adapter)
         }
     }
 }
