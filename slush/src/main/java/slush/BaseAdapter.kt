@@ -10,9 +10,9 @@ import slush.listeners.OnItemClickListener
 class BaseAdapter<ITEM> internal constructor(
     private val context: Context,
     private val layoutId: Int,
-    internal var items: List<ITEM>,
     private val onBindListener: OnBindListener<ITEM>?,
-    private val onItemClickListener: OnItemClickListener?
+    private val onItemClickListener: OnItemClickListener?,
+    internal var items: List<ITEM>
 ) : RecyclerView.Adapter<BaseViewHolder<ITEM>>() {
     internal val itemListManager by lazy { AdapterItemListEditor(this) }
 

@@ -56,8 +56,9 @@ class Slush private constructor() {
             val adapter = BaseAdapter(
                 recyclerView.context,
                 layoutId ?: throw SlushException.LayoutIdNotFoundException(),
-                items ?: throw SlushException.ItemsNotFoundException(),
-                onBindListener, onItemClickListener
+                onBindListener,
+                onItemClickListener,
+                items ?: listOf()
             )
             recyclerView.adapter = adapter
 
