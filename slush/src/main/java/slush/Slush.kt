@@ -32,10 +32,10 @@ class Slush private constructor() {
             onBindListener = listener
         }
 
-        fun onBind(listener: View.(ITEM) -> Unit) = onBind(
+        fun onBind(listener: (View, ITEM) -> Unit) = onBind(
             object : OnBindListener<ITEM> {
-                override fun View.onBind(item: ITEM) {
-                    listener(item)
+                override fun onBind(view: View, item: ITEM) {
+                    listener(view, item)
                 }
             })
 
