@@ -32,10 +32,10 @@ val listEditor = Slush.SingleTypeAdapter<Book>()
     .setItemLayout(R.layout.item_book)
     .setItems(items)
     .setLayoutManager(LinearLayoutManager(this))
-    .setOnBindListener { book ->
-        bookName.text = book.name
+    .onBind { view, book ->
+        view.bookName.text = book.name
     }
-    .setOnItemClickListener { view, position ->
+    .onItemClick { clickedView, position ->
         Log.d(TAG, "Clicked: $position")
     }
     .into(recyclerView)
