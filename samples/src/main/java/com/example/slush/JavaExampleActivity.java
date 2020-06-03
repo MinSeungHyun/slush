@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import slush.ItemListEditor;
 import slush.Slush;
 
 public class JavaExampleActivity extends AppCompatActivity {
@@ -24,21 +25,24 @@ public class JavaExampleActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
         List<Book> items = new ArrayList<>();
+        items.add(new Book("Book 0"));
         items.add(new Book("Book 1"));
         items.add(new Book("Book 2"));
-        items.add(new Book("Book 3"));
 
-        new Slush.SingleTypeAdapter<Book>()
+        ItemListEditor<Book> listEditor = new Slush.SingleTypeAdapter<Book>()
                 .setItemLayout(R.layout.item_book)
                 .setItems(items)
                 .setLayoutManager(new LinearLayoutManager(this))
-                .setOnBindListener((view, book) -> {
+                .onBind((view, book) -> {
                     TextView bookName = view.findViewById(R.id.bookName);
                     bookName.setText(book.getName());
                 })
-                .setOnItemClickListener((view, position) -> {
+                .onItemClick((clickedView, position) -> {
                     Log.d(TAG, "Clicked: " + position);
                 })
-                .into(recyclerView);
+                .into(recyclerView)
+                .getItemListEditor();
+
+        listEditor.addItem(new Book("New Book"));
     }
 }
