@@ -28,22 +28,22 @@ class Slush private constructor() {
             this.layoutManager = layoutManager
         }
 
-        fun setOnBindListener(listener: OnBindListener<ITEM>) = apply {
+        fun onBind(listener: OnBindListener<ITEM>) = apply {
             onBindListener = listener
         }
 
-        fun setOnBindListener(listener: View.(ITEM) -> Unit) = setOnBindListener(
+        fun onBind(listener: View.(ITEM) -> Unit) = onBind(
             object : OnBindListener<ITEM> {
                 override fun View.onBind(item: ITEM) {
                     listener(item)
                 }
             })
 
-        fun setOnItemClickListener(listener: OnItemClickListener) = apply {
+        fun onItemClick(listener: OnItemClickListener) = apply {
             onItemClickListener = listener
         }
 
-        fun setOnItemClickListener(listener: (View, Int) -> Unit) = setOnItemClickListener(
+        fun onItemClick(listener: (View, Int) -> Unit) = onItemClick(
             object : OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
                     listener(view, position)
