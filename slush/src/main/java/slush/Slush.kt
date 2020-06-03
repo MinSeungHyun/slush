@@ -45,8 +45,8 @@ class Slush private constructor() {
 
         fun onItemClick(listener: (View, Int) -> Unit) = onItemClick(
             object : OnItemClickListener {
-                override fun onItemClick(view: View, position: Int) {
-                    listener(view, position)
+                override fun onItemClick(clickedView: View, position: Int) {
+                    listener(clickedView, position)
                 }
             })
 
