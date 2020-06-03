@@ -1,89 +1,65 @@
 # Slush
+[![](https://jitpack.io/v/MinSeungHyun/slush.svg)](https://jitpack.io/#MinSeungHyun/slush)
 
 A simple and easy adapter for RecyclerView
 
-***No more boilerplate adapters and view holders.***
-
+***No more boilerplate adapters and view holders.***  
 Slush will make using RecyclerView easy and fast.
 
-## Preview
+## Setup
+```groovy
+// build.gradle (Project root)
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+```groovy
+// build.gradle (app)
+dependencies {
+    implementation 'com.github.minseunghyun:slush:{version}'
+}
+```
+
+## Usage
 
 This library is still under development.
 
 ```kotlin
-Slush.SingleTypeAdapter<Book>()
-    .setItemLayout(R.layout.item_book) // Required
-    .setItems(items) // Required
-    .setLayoutManager(LinearLayoutManager(this)) // Optional (if layout manager is already set)
-    .setOnBindListener { book -> // Optional
-        bookName.text = book.name // (bookName is an id of TextView in R.layout.item_book)
+val listEditor = Slush.SingleTypeAdapter<Book>()
+    .setItemLayout(R.layout.item_book)
+    .setItems(items)
+    .setLayoutManager(LinearLayoutManager(this))
+    .setOnBindListener { book ->
+        bookName.text = book.name
     }
-    .setOnItemClickListener { view, position -> // Optional (view: clicked item view, position: clicked item's position)
+    .setOnItemClickListener { view, position ->
         Log.d(TAG, "Clicked: $position")
     }
-    .into(recyclerView) // Required (initialize RecyclerView)
+    .into(recyclerView)
+    .itemListEditor
+
+listEditor.addItem(Book("New Book"))
 ```
 
-## Example
+## Document
+The full document is at [Wiki](https://github.com/MinSeungHyun/slush/wiki)
 
-### Kotlin
-
-```kotlin
-class KotlinExampleActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        val items = listOf(
-            Book("Book 1"),
-            Book("Book 2"),
-            Book("Book 3")
-        )
-
-        Slush.SingleTypeAdapter<Book>()
-            .setItemLayout(R.layout.item_book)
-            .setItems(items)
-            .setLayoutManager(LinearLayoutManager(this))
-            .setOnBindListener { book ->
-                bookName.text = book.name
-            }
-            .setOnItemClickListener { view, position ->
-                Log.d(TAG, "Clicked: $position")
-            }
-            .into(recyclerView)
-    }
-}
+## License
 ```
+MIT License
 
-### Java
+Copyright (c) 2020 SeungHyun
 
-```java
-public class JavaExampleActivity extends AppCompatActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-
-        List<Book> items = new ArrayList<>();
-        items.add(new Book("Book 1"));
-        items.add(new Book("Book 2"));
-        items.add(new Book("Book 3"));
-
-        new Slush.SingleTypeAdapter<Book>()
-                .setItemLayout(R.layout.item_book)
-                .setItems(items)
-                .setLayoutManager(new LinearLayoutManager(this))
-                .setOnBindListener((view, book) -> {
-                    TextView bookName = view.findViewById(R.id.bookName);
-                    bookName.setText(book.getName());
-                })
-                .setOnItemClickListener((view, position) -> {
-                    Log.d(TAG, "Clicked: " + position);
-                })
-                .into(recyclerView);
-    }
-}
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 ```
-
