@@ -13,7 +13,7 @@ class BaseViewHolder<ITEM>(
 
     fun bind(position: Int, item: ITEM) {
         onBindListener?.run {
-            view.onBind(item)
+            onBind(view, item)
         }
         onItemClickListener?.run {
             view.setOnClickListener {
