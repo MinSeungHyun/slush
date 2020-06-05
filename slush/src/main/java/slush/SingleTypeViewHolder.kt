@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import slush.listeners.OnBindListener
 import slush.listeners.OnItemClickListener
 
-class BaseViewHolder<ITEM>(
+class SingleTypeViewHolder<ITEM>(
     private val view: View,
     private val onBindListener: OnBindListener<ITEM>?,
     private val onItemClickListener: OnItemClickListener?
