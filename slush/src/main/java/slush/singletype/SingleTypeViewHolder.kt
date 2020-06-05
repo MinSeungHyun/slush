@@ -12,13 +12,11 @@ class SingleTypeViewHolder<ITEM>(
 ) : RecyclerView.ViewHolder(view) {
 
     fun bind(position: Int, item: ITEM) {
-        onBindListener?.run {
-            onBind(view, item)
-        }
-        onItemClickListener?.run {
-            view.setOnClickListener {
-                onItemClickListener.onItemClick(view, position)
-            }
+        onBindListener?.onBind(view, item)
+
+        onItemClickListener ?: return
+        view.setOnClickListener {
+            onItemClickListener.onItemClick(it, position)
         }
     }
 }
