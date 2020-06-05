@@ -53,7 +53,7 @@ class Slush private constructor() {
         fun into(recyclerView: RecyclerView): AdapterAppliedResult<ITEM> {
             recyclerView.layoutManager = layoutManager
 
-            val adapter = BaseAdapter(
+            val adapter = SingleTypeAdapter(
                 recyclerView.context,
                 layoutId ?: throw SlushException.LayoutIdNotFoundException(),
                 onBindListener,

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import slush.listeners.OnBindListener
 import slush.listeners.OnItemClickListener
 
-class BaseAdapter<ITEM> internal constructor(
+class SingleTypeAdapter<ITEM> internal constructor(
     private val context: Context,
     private val layoutId: Int,
     private val onBindListener: OnBindListener<ITEM>?,
