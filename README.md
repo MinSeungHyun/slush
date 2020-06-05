@@ -1,5 +1,5 @@
 # Slush
-[![](https://jitpack.io/v/MinSeungHyun/slush.svg)](https://jitpack.io/#MinSeungHyun/slush)
+[![Download](https://api.bintray.com/packages/minseunghyun/maven/slush/images/download.svg)](https://bintray.com/minseunghyun/maven/slush/_latestVersion)
 
 A simple and easy adapter for RecyclerView
 
@@ -7,19 +7,11 @@ A simple and easy adapter for RecyclerView
 Slush will make using RecyclerView easy and fast.
 
 ## Setup
+At your build.gradle(app)  
 ```groovy
-// build.gradle (Project root)
-allprojects {
-    repositories {
-        maven { url 'https://jitpack.io' }
-    }
-}
-```
-
-```groovy
-// build.gradle (app)
 dependencies {
-    implementation 'com.github.minseunghyun:slush:{version}'
+    implementation 'in.seunghyun:slush:version'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0' //RecyclerView
 }
 ```
 
