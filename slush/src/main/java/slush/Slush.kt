@@ -5,6 +5,7 @@ import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 import slush.listeners.OnBindListener
 import slush.listeners.OnItemClickListener
+import slush.singletype.SingleTypeAdapter
 import slush.utils.SlushException
 
 class Slush private constructor() {

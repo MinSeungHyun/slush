@@ -1,9 +1,10 @@
-package slush
+package slush.singletype
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import slush.AdapterItemListEditor
 import slush.listeners.OnBindListener
 import slush.listeners.OnItemClickListener
 

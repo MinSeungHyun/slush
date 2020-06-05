@@ -1,5 +1,7 @@
 package slush
 
+import slush.singletype.SingleTypeAdapter
+
 class AdapterItemListEditor<ITEM>(private val adapter: SingleTypeAdapter<ITEM>) : ItemListEditor<ITEM> {
     override fun addItem(item: ITEM) {
         editList {
