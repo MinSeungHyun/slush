@@ -8,7 +8,7 @@ import slush.listeners.OnItemClickListener
 import slush.utils.SlushException
 
 class Slush private constructor() {
-    data class SingleTypeAdapter<ITEM>(
+    data class SingleType<ITEM>(
         private var layoutId: Int? = null,
         private var items: List<ITEM>? = null,
         private var layoutManager: RecyclerView.LayoutManager? = null,
