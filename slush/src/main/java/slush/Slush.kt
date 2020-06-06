@@ -2,7 +2,9 @@ package slush
 
 import android.view.View
 import androidx.annotation.LayoutRes
+import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import slush.listeners.OnBindDataListener
 import slush.listeners.OnBindListener
 import slush.listeners.OnItemClickListener
 import slush.singletype.SingleTypeAdapter
@@ -14,6 +16,7 @@ class Slush private constructor() {
         private var items: List<ITEM>? = null,
         private var layoutManager: RecyclerView.LayoutManager? = null,
         private var onBindListener: OnBindListener<ITEM>? = null,
+        private var onBindDataListener: OnBindDataListener<ITEM>? = null,
         private var onItemClickListener: OnItemClickListener? = null
     ) {
 
@@ -40,6 +43,18 @@ class Slush private constructor() {
                 }
             })
 
+        fun onBindData(dataListener: OnBindDataListener<ITEM>) = apply {
+            onBindDataListener = dataListener
+        }
+
+        fun <T : ViewDataBinding> onBindData(listener: (binding: T, ITEM) -> Unit) = onBindData(
+            object : OnBindDataListener<ITEM> {
+                override fun onBind(binding: ViewDataBinding, item: ITEM) {
+                    @Suppress("UNCHECKED_CAST")
+                    listener(binding as T, item)
+                }
+            })
+
         fun onItemClick(listener: OnItemClickListener) = apply {
             onItemClickListener = listener
         }
@@ -58,6 +73,7 @@ class Slush private constructor() {
                 recyclerView.context,
                 layoutId ?: throw SlushException.LayoutIdNotFoundException(),
                 onBindListener,
+                onBindDataListener,
                 onItemClickListener,
                 items ?: listOf()
             )
