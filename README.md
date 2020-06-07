@@ -37,7 +37,8 @@ listEditor.addItem(Book("New Book"))
 ```
 
 ## Document
-The full document is at [Wiki](https://github.com/MinSeungHyun/slush/wiki)
+The full document is at [Wiki](https://github.com/MinSeungHyun/slush/wiki).  
+You can also see the sample codes [here](https://github.com/MinSeungHyun/slush/tree/master/samples/src/main/java/com/example/slush).
 
 ## License
 ```
