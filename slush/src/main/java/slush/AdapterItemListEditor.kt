@@ -1,6 +1,8 @@
 package slush
 
-class AdapterItemListEditor<ITEM>(private val adapter: BaseAdapter<ITEM>) : ItemListEditor<ITEM> {
+import slush.singletype.SingleTypeAdapter
+
+class AdapterItemListEditor<ITEM>(private val adapter: SingleTypeAdapter<ITEM>) : ItemListEditor<ITEM> {
     override fun addItem(item: ITEM) {
         editList {
             add(item)
@@ -80,7 +82,7 @@ class AdapterItemListEditor<ITEM>(private val adapter: BaseAdapter<ITEM>) : Item
         adapter.notifyItemMoved(fromPosition, toPosition)
     }
 
-    private fun editList(block: MutableList<ITEM>.() -> Unit) {
+    private inline fun editList(block: MutableList<ITEM>.() -> Unit) {
         adapter.items = adapter.items.toMutableList().apply(block)
     }
 }

@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.slush.databinding.ItemDataBinding
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.item_book.view.*
 import slush.Slush
 
 private const val TAG = "SlushTest"
@@ -25,12 +25,12 @@ class KotlinExampleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val listEditor = Slush.SingleTypeAdapter<Book>()
-            .setItemLayout(R.layout.item_book)
+        val listEditor = Slush.SingleType<Book>()
+            .setItemLayout(R.layout.item_data)
             .setItems(items)
             .setLayoutManager(LinearLayoutManager(this))
-            .onBind { view, book ->
-                view.bookName.text = book.name
+            .onBindData<ItemDataBinding> { binding, book ->
+                binding.book = book
             }
             .onItemClick { clickedView, position ->
                 Log.d(TAG, "Clicked: $position")
@@ -38,6 +38,9 @@ class KotlinExampleActivity : AppCompatActivity() {
             .into(recyclerView)
             .itemListEditor
 
-        listEditor.addItem(Book("New Book"))
+        var count = 0
+        testButton.setOnClickListener {
+            listEditor.addItemAt(3, Book("New Book ${count++}"))
+        }
     }
 }
