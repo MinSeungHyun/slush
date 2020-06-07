@@ -33,6 +33,7 @@ class Slush private constructor() {
         }
 
         fun onBind(listener: OnBindListener<ITEM>) = apply {
+            if (onBindDataListener != null) throw SlushException.BothBindMethodsCalledException()
             onBindListener = listener
         }
 
@@ -44,6 +45,7 @@ class Slush private constructor() {
             })
 
         fun onBindData(dataListener: OnBindDataListener<ITEM>) = apply {
+            if (onBindListener != null) throw SlushException.BothBindMethodsCalledException()
             onBindDataListener = dataListener
         }
 
