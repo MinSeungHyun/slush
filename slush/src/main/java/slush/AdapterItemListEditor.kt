@@ -82,7 +82,7 @@ class AdapterItemListEditor<ITEM>(private val adapter: SingleTypeAdapter<ITEM>) 
         adapter.notifyItemMoved(fromPosition, toPosition)
     }
 
-    private fun editList(block: MutableList<ITEM>.() -> Unit) {
+    private inline fun editList(block: MutableList<ITEM>.() -> Unit) {
         adapter.items = adapter.items.toMutableList().apply(block)
     }
 }
