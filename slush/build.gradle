@@ -6,7 +6,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 group = 'in.seunghyun'
-version = '0.3.0'
+version = rootProject.ext.slushVersionName
 
 android {
     compileSdkVersion 29
@@ -55,8 +55,8 @@ bintray {
         websiteUrl = 'https://github.com/minSeungHyun/slush'
 
         version {
-            name = version
-            vcsTag = name
+            name = rootProject.ext.slushVersionName
+            vcsTag = rootProject.ext.slushVersionName
         }
     }
 }
