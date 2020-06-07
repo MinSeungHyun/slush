@@ -6,7 +6,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 group = 'in.seunghyun'
-version = '0.2.1'
+version = '0.3.0'
 
 android {
     compileSdkVersion 29
