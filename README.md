@@ -4,7 +4,8 @@
 A simple and easy adapter for RecyclerView
 
 ***No more boilerplate adapters and view holders.***  
-Slush will make using RecyclerView easy and fast.
+Slush will make using RecyclerView easy and fast.  
+The goal of this project is to make RecyclerView, which is not very complicated, possible with Slush.
 
 ## Setup
 At your build.gradle(app)  
