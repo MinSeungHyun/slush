@@ -10,7 +10,7 @@ import slush.listeners.OnItemClickListener
 import slush.singletype.SingleTypeAdapter
 import slush.utils.SlushException
 
-class Slush private constructor() {
+sealed class Slush {
     data class SingleType<ITEM>(
         private var layoutId: Int? = null,
         private var items: List<ITEM>? = null,
@@ -18,7 +18,7 @@ class Slush private constructor() {
         private var onBindListener: OnBindListener<ITEM>? = null,
         private var onBindDataListener: OnBindDataListener<ITEM>? = null,
         private var onItemClickListener: OnItemClickListener? = null
-    ) {
+    ) : Slush() {
 
         fun setItemLayout(@LayoutRes layoutId: Int) = apply {
             this.layoutId = layoutId
