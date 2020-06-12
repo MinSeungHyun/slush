@@ -77,7 +77,7 @@ sealed class Slush {
                 onBindListener,
                 onBindDataListener,
                 onItemClickListener,
-                items ?: listOf()
+                ArrayList(items ?: listOf())
             )
             recyclerView.adapter = adapter
 
