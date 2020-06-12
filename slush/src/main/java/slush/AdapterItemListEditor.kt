@@ -10,18 +10,18 @@ class AdapterItemListEditor<ITEM>(private val adapter: SingleTypeAdapter<ITEM>)
         adapter.notifyItemInserted(adapter.itemCount)
     }
 
-    override fun addItemAt(position: Int, item: ITEM) {
-        super.addItemAt(position, item)
+    override fun addItem(position: Int, item: ITEM) {
+        super.addItem(position, item)
         adapter.notifyItemInserted(position)
     }
 
-    override fun addItemRange(items: List<ITEM>) {
-        super.addItemRange(items)
+    override fun addItems(items: List<ITEM>) {
+        super.addItems(items)
         adapter.notifyItemRangeInserted(adapter.itemCount, items.size)
     }
 
-    override fun addItemRangeAt(startPosition: Int, items: List<ITEM>) {
-        super.addItemRangeAt(startPosition, items)
+    override fun addItems(startPosition: Int, items: List<ITEM>) {
+        super.addItems(startPosition, items)
         adapter.notifyItemRangeInserted(startPosition, items.size)
     }
 
@@ -31,23 +31,23 @@ class AdapterItemListEditor<ITEM>(private val adapter: SingleTypeAdapter<ITEM>)
         return index
     }
 
-    override fun removeItemAt(position: Int) {
-        super.removeItemAt(position)
+    override fun removeItem(position: Int) {
+        super.removeItem(position)
         adapter.notifyItemRemoved(position)
     }
 
-    override fun removeItemRange(startPosition: Int, itemCount: Int) {
-        super.removeItemRange(startPosition, itemCount)
+    override fun removeItems(startPosition: Int, itemCount: Int) {
+        super.removeItems(startPosition, itemCount)
         adapter.notifyItemRangeRemoved(startPosition, itemCount)
     }
 
-    override fun changeItemAt(position: Int, item: ITEM) {
-        super.changeItemAt(position, item)
+    override fun changeItem(position: Int, item: ITEM) {
+        super.changeItem(position, item)
         adapter.notifyItemChanged(position)
     }
 
-    override fun changeItemRange(startPosition: Int, items: List<ITEM>) {
-        super.changeItemRange(startPosition, items)
+    override fun changeItems(startPosition: Int, items: List<ITEM>) {
+        super.changeItems(startPosition, items)
         adapter.notifyItemRangeChanged(startPosition, items.size)
     }
 

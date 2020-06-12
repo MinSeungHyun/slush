@@ -5,15 +5,15 @@ open class BaseItemListEditor<ITEM>(private val items: ArrayList<ITEM>) : ItemLi
         add(item)
     }
 
-    override fun addItemAt(position: Int, item: ITEM) = editList {
+    override fun addItem(position: Int, item: ITEM) = editList {
         add(position, item)
     }
 
-    override fun addItemRange(items: List<ITEM>) = editList {
+    override fun addItems(items: List<ITEM>) = editList {
         addAll(items)
     }
 
-    override fun addItemRangeAt(startPosition: Int, items: List<ITEM>) = editList {
+    override fun addItems(startPosition: Int, items: List<ITEM>) = editList {
         addAll(startPosition, items)
     }
 
@@ -23,19 +23,19 @@ open class BaseItemListEditor<ITEM>(private val items: ArrayList<ITEM>) : ItemLi
         return index
     }
 
-    override fun removeItemAt(position: Int) = editList {
+    override fun removeItem(position: Int) = editList {
         removeAt(position)
     }
 
-    override fun removeItemRange(startPosition: Int, itemCount: Int) = editList {
+    override fun removeItems(startPosition: Int, itemCount: Int) = editList {
         subList(startPosition, startPosition + itemCount).clear()
     }
 
-    override fun changeItemAt(position: Int, item: ITEM) = editList {
+    override fun changeItem(position: Int, item: ITEM) = editList {
         set(position, item)
     }
 
-    override fun changeItemRange(startPosition: Int, items: List<ITEM>) = editList {
+    override fun changeItems(startPosition: Int, items: List<ITEM>) = editList {
         subList(startPosition, startPosition + items.size).clear()
         addAll(startPosition, items)
     }
