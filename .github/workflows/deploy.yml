@@ -1,7 +1,7 @@
-name: Android CI
+name: Deploy
 
 on:
-  releases:
+  release:
     types: [published]
 
 jobs:
