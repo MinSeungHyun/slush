@@ -40,7 +40,7 @@ class KotlinExampleActivity : AppCompatActivity() {
 
         var count = 0
         testButton.setOnClickListener {
-            listEditor.addItemAt(3, Book("New Book ${count++}"))
+            listEditor.addItem(3, Book("New Book ${count++}"))
         }
     }
 }

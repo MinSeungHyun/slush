@@ -17,7 +17,7 @@ class SingleTypeAdapter<ITEM> internal constructor(
     private val onBindListener: OnBindListener<ITEM>?,
     private val onBindDataListener: OnBindDataListener<ITEM>?,
     private val onItemClickListener: OnItemClickListener?,
-    internal var items: List<ITEM>
+    internal val items: ArrayList<ITEM>
 ) : RecyclerView.Adapter<BaseSingleTypeViewHolder<ITEM>>() {
     internal val itemListManager by lazy { AdapterItemListEditor(this) }
 

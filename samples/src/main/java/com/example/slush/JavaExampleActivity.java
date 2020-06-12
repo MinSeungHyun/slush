@@ -49,7 +49,7 @@ public class JavaExampleActivity extends AppCompatActivity {
                 .getItemListEditor();
 
         findViewById(R.id.testButton).setOnClickListener(v ->
-                listEditor.addItemAt(3, new Book("New Book " + count++))
+                listEditor.addItem(3, new Book("New Book " + count++))
         );
     }
 }
