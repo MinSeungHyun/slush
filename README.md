@@ -1,5 +1,6 @@
 # Slush
 [![Download](https://api.bintray.com/packages/minseunghyun/maven/slush/images/download.svg)](https://bintray.com/minseunghyun/maven/slush/_latestVersion)
+![Android CI](https://github.com/MinSeungHyun/slush/workflows/Android%20CI/badge.svg)
 
 A simple and easy adapter for RecyclerView
 
