@@ -6,7 +6,7 @@ interface ItemListEditor<ITEM> {
     fun addItemRange(items: List<ITEM>)
     fun addItemRangeAt(startPosition: Int, items: List<ITEM>)
 
-    fun removeItem(item: ITEM): Boolean
+    fun removeItem(item: ITEM): Int
     fun removeItemAt(position: Int)
     fun removeItemRange(startPosition: Int, itemCount: Int)
 

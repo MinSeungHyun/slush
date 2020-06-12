@@ -2,87 +2,62 @@ package slush
 
 import slush.singletype.SingleTypeAdapter
 
-class AdapterItemListEditor<ITEM>(private val adapter: SingleTypeAdapter<ITEM>) : ItemListEditor<ITEM> {
+class AdapterItemListEditor<ITEM>(private val adapter: SingleTypeAdapter<ITEM>)
+    : BaseItemListEditor<ITEM>(adapter.items) {
+
     override fun addItem(item: ITEM) {
-        editList {
-            add(item)
-        }
+        super.addItem(item)
         adapter.notifyItemInserted(adapter.itemCount)
     }
 
     override fun addItemAt(position: Int, item: ITEM) {
-        editList {
-            add(position, item)
-        }
+        super.addItemAt(position, item)
         adapter.notifyItemInserted(position)
     }
 
     override fun addItemRange(items: List<ITEM>) {
-        editList {
-            addAll(items)
-        }
+        super.addItemRange(items)
         adapter.notifyItemRangeInserted(adapter.itemCount, items.size)
     }
 
     override fun addItemRangeAt(startPosition: Int, items: List<ITEM>) {
-        editList {
-            addAll(startPosition, items)
-        }
+        super.addItemRangeAt(startPosition, items)
         adapter.notifyItemRangeInserted(startPosition, items.size)
     }
 
-    override fun removeItem(item: ITEM): Boolean {
-        val index = adapter.items.indexOf(item)
-        return if (index >= 0) {
-            editList { removeAt(index) }
-            adapter.notifyItemRemoved(index)
-            true
-        } else false
+    override fun removeItem(item: ITEM): Int {
+        val index = super.removeItem(item)
+        if (index >= 0) adapter.notifyItemRemoved(index)
+        return index
     }
 
     override fun removeItemAt(position: Int) {
-        editList {
-            removeAt(position)
-        }
+        super.removeItemAt(position)
         adapter.notifyItemRemoved(position)
     }
 
     override fun removeItemRange(startPosition: Int, itemCount: Int) {
-        editList {
-            subList(startPosition, startPosition + itemCount).clear()
-        }
+        super.removeItemRange(startPosition, itemCount)
         adapter.notifyItemRangeRemoved(startPosition, itemCount)
     }
 
     override fun changeItemAt(position: Int, item: ITEM) {
-        editList {
-            set(position, item)
-        }
+        super.changeItemAt(position, item)
         adapter.notifyItemChanged(position)
     }
 
     override fun changeItemRange(startPosition: Int, items: List<ITEM>) {
-        editList {
-            subList(startPosition, startPosition + items.size).clear()
-            addAll(startPosition, items)
-        }
+        super.changeItemRange(startPosition, items)
         adapter.notifyItemRangeChanged(startPosition, items.size)
     }
 
     override fun changeAll(items: List<ITEM>) {
-        adapter.items = items
+        super.changeAll(items)
         adapter.notifyDataSetChanged()
     }
 
     override fun moveItem(fromPosition: Int, toPosition: Int) {
-        editList {
-            val removedItem = removeAt(fromPosition)
-            add(toPosition, removedItem)
-        }
+        super.moveItem(fromPosition, toPosition)
         adapter.notifyItemMoved(fromPosition, toPosition)
-    }
-
-    private inline fun editList(block: MutableList<ITEM>.() -> Unit) {
-        adapter.items = adapter.items.toMutableList().apply(block)
     }
 }
