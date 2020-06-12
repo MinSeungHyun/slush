@@ -39,7 +39,12 @@ android {
 }
 
 Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
+if (project.rootProject.file('local.properties').exists()) {
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+} else {
+    properties.put('bintray.user', System.getProperty('BINTRAY_USER'))
+    properties.put('bintray.apiKey', System.getProperty('BINTRAY_API_KEY'))
+}
 
 bintray {
     user = properties.getProperty('bintray.user')
