@@ -19,7 +19,7 @@ class SingleTypeAdapter<ITEM> internal constructor(
     private val onItemClickListener: OnItemClickListener?,
     internal val items: ArrayList<ITEM>
 ) : RecyclerView.Adapter<BaseSingleTypeViewHolder<ITEM>>() {
-    internal val itemListManager by lazy { AdapterItemListEditor(this) }
+    internal val itemListEditor by lazy { AdapterItemListEditor(this) }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseSingleTypeViewHolder<ITEM> {
         val inflater = LayoutInflater.from(context)
