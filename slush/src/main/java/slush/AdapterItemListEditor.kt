@@ -52,8 +52,7 @@ class AdapterItemListEditor<ITEM>(private val adapter: SingleTypeAdapter<ITEM>)
     }
 
     override fun changeAll(items: List<ITEM>) {
-        super.changeAll(items)
-        adapter.notifyDataSetChanged()
+        adapter.setItems(items)
     }
 
     override fun moveItem(fromPosition: Int, toPosition: Int) {
