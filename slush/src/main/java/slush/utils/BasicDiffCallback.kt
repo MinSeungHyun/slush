@@ -1,6 +1,6 @@
 package slush.utils
 
-class DefaultDiffCallback<ITEM> : SlushDiffCallback<ITEM>() {
+class BasicDiffCallback<ITEM> : SlushDiffCallback<ITEM>() {
     private var oldItems = listOf<ITEM>()
     private var newItems = listOf<ITEM>()
 
