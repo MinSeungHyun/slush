@@ -14,6 +14,7 @@ import java.util.List;
 
 import slush.ItemListEditor;
 import slush.Slush;
+import slush.utils.BasicDiffCallback;
 
 public class JavaExampleActivity extends AppCompatActivity {
     private static final String TAG = "Slush test";
@@ -45,6 +46,7 @@ public class JavaExampleActivity extends AppCompatActivity {
                 .onItemClick((clickedView, position) -> {
                     Log.d(TAG, "Clicked: " + position);
                 })
+                .setDiffCallback(new BasicDiffCallback<>())
                 .into(recyclerView)
                 .getItemListEditor();
 
