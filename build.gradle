@@ -1,5 +1,5 @@
 ext {
-    slushVersionName = '0.4.0'
+    slushVersionName = '0.4.1'
 }
 
 buildscript {
