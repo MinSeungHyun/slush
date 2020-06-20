@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.slush.databinding.ItemDataBinding
 import kotlinx.android.synthetic.main.activity_main.*
 import slush.Slush
+import slush.utils.BasicDiffCallback
 
 private const val TAG = "SlushTest"
 
@@ -35,6 +36,7 @@ class KotlinExampleActivity : AppCompatActivity() {
             .onItemClick { clickedView, position ->
                 Log.d(TAG, "Clicked: $position")
             }
+            .setDiffCallback(BasicDiffCallback())
             .into(recyclerView)
             .itemListEditor
 
