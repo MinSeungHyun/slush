@@ -22,20 +22,21 @@ dependencies {
 This library is still under development.
 
 ```kotlin
-val listEditor = Slush.SingleTypeAdapter<Book>()
-    .setItemLayout(R.layout.item_book)
+val listEditor = Slush.SingleType<SimpleItem>()
+    .setItemLayout(R.layout.simple_binding_item)
     .setItems(items)
     .setLayoutManager(LinearLayoutManager(this))
-    .onBind { view, book ->
-        view.bookName.text = book.name
+    .onBindData<SimpleBindingItemBinding> { binding, item ->
+        binding.item = item
     }
     .onItemClick { clickedView, position ->
         Log.d(TAG, "Clicked: $position")
     }
+    .setDiffCallback(BasicDiffCallback())
     .into(recyclerView)
     .itemListEditor
 
-listEditor.addItem(Book("New Book"))
+listEditor.addItem(SimpleItem("New Item"))
 ```
 
 ## Document

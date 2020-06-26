@@ -4,8 +4,8 @@
     <data>
 
         <variable
-            name="book"
-            type="com.example.slush.Book" />
+            name="item"
+            type="com.example.slush.SimpleItem" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -18,13 +18,13 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/bookName"
+            android:id="@+id/itemName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{book.name}"
+            android:text="@{item.name}"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold"
-            tools:text="Book name" />
+            tools:text="Item name" />
     </LinearLayout>
 </layout>

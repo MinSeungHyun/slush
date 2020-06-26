@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.slush.databinding.ItemDataBinding
+import com.example.slush.databinding.SimpleBindingItemBinding
 import kotlinx.android.synthetic.main.activity_main.*
 import slush.Slush
 import slush.utils.BasicDiffCallback
@@ -12,12 +12,12 @@ import slush.utils.BasicDiffCallback
 private const val TAG = "SlushTest"
 
 val items = listOf(
-    Book("Book 0"),
-    Book("Book 1"),
-    Book("Book 2"),
-    Book("Book 3"),
-    Book("Book 4"),
-    Book("Book 5")
+    SimpleItem("Item 0"),
+    SimpleItem("Item 1"),
+    SimpleItem("Item 2"),
+    SimpleItem("Item 3"),
+    SimpleItem("Item 4"),
+    SimpleItem("Item 5")
 )
 
 class KotlinExampleActivity : AppCompatActivity() {
@@ -26,12 +26,12 @@ class KotlinExampleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val listEditor = Slush.SingleType<Book>()
-            .setItemLayout(R.layout.item_data)
+        val listEditor = Slush.SingleType<SimpleItem>()
+            .setItemLayout(R.layout.simple_binding_item)
             .setItems(items)
             .setLayoutManager(LinearLayoutManager(this))
-            .onBindData<ItemDataBinding> { binding, book ->
-                binding.book = book
+            .onBindData<SimpleBindingItemBinding> { binding, item ->
+                binding.item = item
             }
             .onItemClick { clickedView, position ->
                 Log.d(TAG, "Clicked: $position")
@@ -42,7 +42,7 @@ class KotlinExampleActivity : AppCompatActivity() {
 
         var count = 0
         testButton.setOnClickListener {
-            listEditor.addItem(3, Book("New Book ${count++}"))
+            listEditor.addItem(SimpleItem("New Item ${count++}"))
         }
     }
 }

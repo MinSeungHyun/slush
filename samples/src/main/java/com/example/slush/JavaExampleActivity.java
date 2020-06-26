@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.slush.databinding.ItemDataBinding;
+import com.example.slush.databinding.SimpleBindingItemBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +17,8 @@ import slush.Slush;
 import slush.utils.BasicDiffCallback;
 
 public class JavaExampleActivity extends AppCompatActivity {
-    private static final String TAG = "Slush test";
-    int count = 0;
+    private static final String TAG = "SlushTest";
+    private int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,21 +27,21 @@ public class JavaExampleActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
-        List<Book> items = new ArrayList<>();
-        items.add(new Book("Book 0"));
-        items.add(new Book("Book 1"));
-        items.add(new Book("Book 2"));
-        items.add(new Book("Book 3"));
-        items.add(new Book("Book 4"));
-        items.add(new Book("Book 5"));
+        List<SimpleItem> items = new ArrayList<>();
+        items.add(new SimpleItem("Item 0"));
+        items.add(new SimpleItem("Item 1"));
+        items.add(new SimpleItem("Item 2"));
+        items.add(new SimpleItem("Item 3"));
+        items.add(new SimpleItem("Item 4"));
+        items.add(new SimpleItem("Item 5"));
 
-        ItemListEditor<Book> listEditor = new Slush.SingleType<Book>()
-                .setItemLayout(R.layout.item_data)
+        ItemListEditor<SimpleItem> listEditor = new Slush.SingleType<SimpleItem>()
+                .setItemLayout(R.layout.simple_binding_item)
                 .setItems(items)
                 .setLayoutManager(new LinearLayoutManager(this))
-                .onBindData((dataBinding, book) -> {
-                    ItemDataBinding binding = (ItemDataBinding) dataBinding;
-                    binding.setBook(book);
+                .onBindData((dataBinding, item) -> {
+                    SimpleBindingItemBinding binding = (SimpleBindingItemBinding) dataBinding;
+                    binding.setItem(item);
                 })
                 .onItemClick((clickedView, position) -> {
                     Log.d(TAG, "Clicked: " + position);
@@ -51,7 +51,7 @@ public class JavaExampleActivity extends AppCompatActivity {
                 .getItemListEditor();
 
         findViewById(R.id.testButton).setOnClickListener(v ->
-                listEditor.addItem(3, new Book("New Book " + count++))
+                listEditor.addItem(new SimpleItem("New Item " + count++))
         );
     }
 }
