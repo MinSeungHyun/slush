@@ -12,7 +12,7 @@ The goal of this project is to make RecyclerView, which is not very complicated,
 At your build.gradle(app)  
 ```groovy
 dependencies {
-    implementation 'in.seunghyun:slush:version'
+    implementation 'in.seunghyun:slush:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0' //RecyclerView
 }
 ```
