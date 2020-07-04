@@ -34,11 +34,9 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
-    implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.core:core-ktx:$androidKtxVersion"
-    implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+    api "androidx.recyclerview:recyclerview:$recyclerViewVersion"
 }
 
 apply plugin: 'com.github.dcendents.android-maven'
