@@ -2,11 +2,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
-
-group = 'in.seunghyun'
-version = rootProject.ext.slushVersionName
 
 android {
     compileSdkVersion 29
@@ -16,7 +11,7 @@ android {
         minSdkVersion 18
         targetSdkVersion 29
         versionCode 1
-        versionName version
+        versionName rootProject.ext.slushVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -37,6 +32,18 @@ android {
         enabled = true
     }
 }
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    implementation "androidx.core:core-ktx:$androidKtxVersion"
+    api "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+}
+
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+group = rootProject.ext.slushGroupName
+version = rootProject.ext.slushVersionName
 
 bintray {
     Properties properties = new Properties()
@@ -64,14 +71,6 @@ bintray {
             vcsTag = rootProject.ext.slushVersionName
         }
     }
-}
-
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
-    implementation "androidx.appcompat:appcompat:$appCompatVersion"
-    implementation "androidx.core:core-ktx:$androidKtxVersion"
-    implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
 }
 
 task sourcesJar(type: Jar) {
