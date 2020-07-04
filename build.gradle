@@ -1,5 +1,6 @@
 ext {
     slushVersionName = '1.0.0'
+    slushGroupName = 'in.seunghyun'
 }
 
 buildscript {
