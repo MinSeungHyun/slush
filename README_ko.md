@@ -1,17 +1,16 @@
 # Slush
 
-[한국어](./README_ko.md)  
 [![Download](https://api.bintray.com/packages/minseunghyun/maven/slush/images/download.svg)](https://bintray.com/minseunghyun/maven/slush/_latestVersion)
 ![Android CI](https://github.com/MinSeungHyun/slush/workflows/Android%20CI/badge.svg)
 
-**_No more boilerplate adapters and view holders._**  
-Slush will make using RecyclerView easy and fast.
+**_더이상 반복적인 Adapter와 ViewHolder 코드를 작성하지 마세요._**  
+슬러시가 RecyclerView를 쉽고 빠르게 사용할 수 있도록 도와줍니다.
 
-_The goal of this project is to make RecyclerView, which is not very complicated, possible with Slush._
+_이 프로젝트의 목표는 엄청 복잡하지 않은 RecyclerView는 슬러시로 만들 수 있게 하는 것입니다._
 
-## Setup
+## 설정
 
-Add a dependency below at your build.gradle(app)
+build.gradle(app)에 아래 dependency를 추가해주세요.
 
 ```groovy
 dependencies {
@@ -19,7 +18,7 @@ dependencies {
 }
 ```
 
-## Usage
+## 사용
 
 ```kotlin
 val listEditor = Slush.SingleType<SimpleItem>()
@@ -39,10 +38,10 @@ val listEditor = Slush.SingleType<SimpleItem>()
 listEditor.addItem(SimpleItem("New Item"))
 ```
 
-## Document
+## 문서
 
-The full document is at [Wiki](https://github.com/MinSeungHyun/slush/wiki).  
-You can also see the sample codes [here](https://github.com/MinSeungHyun/slush/tree/master/samples/src/main/java/com/example/slush).
+모든 문서는 [위키](https://github.com/MinSeungHyun/slush/wiki)에 있습니다.  
+[여기](https://github.com/MinSeungHyun/slush/tree/master/samples/src/main/java/com/example/slush)에서 샘플 코드를 볼 수 있습니다.
 
 ## License
 
