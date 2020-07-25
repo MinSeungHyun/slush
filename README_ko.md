@@ -1,4 +1,4 @@
-<img src="./logo.png" width="360"><br>
+<img src="./images/logo.png" width="360"><br>
 
 [English](./README.md)
 
