@@ -1,5 +1,5 @@
 ext {
-    slushVersionName = '1.1.0'
+    slushVersionName = '1.1.1'
     slushGroupName = 'in.seunghyun'
 }
 

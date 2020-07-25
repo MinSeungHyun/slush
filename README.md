@@ -16,7 +16,7 @@ Add a dependency below at your build.gradle(app)
 
 ```groovy
 dependencies {
-    implementation 'in.seunghyun:slush:1.1.0'
+    implementation 'in.seunghyun:slush:1.1.1'
 }
 ```
 
