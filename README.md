@@ -1,4 +1,4 @@
-# Slush
+<img src="./logo.png" width="360"><br>
 
 [한국어](./README_ko.md)
 

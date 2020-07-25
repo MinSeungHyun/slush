@@ -1,4 +1,4 @@
-# Slush
+<img src="./logo.png" width="360"><br>
 
 [English](./README.md)
 
