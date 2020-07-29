@@ -32,9 +32,10 @@ android {
 }
 
 dependencies {
+    api "androidx.recyclerview:recyclerview:$recyclerViewVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
     implementation "androidx.core:core-ktx:$androidKtxVersion"
-    api "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
 }
 
 apply plugin: 'com.github.dcendents.android-maven'
