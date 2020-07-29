@@ -10,9 +10,7 @@ Slush will make using RecyclerView easy and fast.
 
 _The goal of this project is to make RecyclerView, which is not very complicated, possible with Slush._
 
-<video width="360" autoplay loop muted>
-  <source src="./images/sample.mp4" type="video/mp4">
-</video>
+<img src="./images/sample.gif" width="360">
 
 ## Features
 
