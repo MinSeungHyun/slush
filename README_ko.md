@@ -10,6 +10,21 @@
 
 _이 프로젝트의 목표는 엄청 복잡하지 않은 RecyclerView는 슬러시로 만들 수 있게 하는 것입니다._
 
+<video width="360" autoplay loop muted>
+  <source src="./images/sample.mp4" type="video/mp4">
+</video>
+
+## Features
+
+- [x] ItemClickListener
+- [x] DataBinding
+- [x] DiffCallback
+- [ ] ObservableArrayList
+- [ ] LiveData
+- [ ] MultiType Adapter
+- [ ] (Divider)ItemDecoration
+- [ ] Swipe option
+
 ## Setup
 
 build.gradle(app)에 아래 dependency를 추가해주세요.
