@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Slush</string>
+    <string name="add_item">Add an item</string>
 </resources>

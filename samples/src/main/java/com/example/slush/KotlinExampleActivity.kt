@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.slush.databinding.SimpleBindingItemBinding
+import com.example.slush.databinding.SimpleItemBinding
 import kotlinx.android.synthetic.main.activity_main.*
 import slush.Slush
 import slush.utils.BasicDiffCallback
@@ -12,12 +12,9 @@ import slush.utils.BasicDiffCallback
 private const val TAG = "SlushTest"
 
 val items = listOf(
-    SimpleItem("Item 0"),
-    SimpleItem("Item 1"),
-    SimpleItem("Item 2"),
-    SimpleItem("Item 3"),
-    SimpleItem("Item 4"),
-    SimpleItem("Item 5")
+    SimpleItem("Sample Item", "item 0"),
+    SimpleItem("Sample Item", "item 1"),
+    SimpleItem("Sample Item", "item 2")
 )
 
 class KotlinExampleActivity : AppCompatActivity() {
@@ -27,10 +24,10 @@ class KotlinExampleActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val listEditor = Slush.SingleType<SimpleItem>()
-            .setItemLayout(R.layout.simple_binding_item)
+            .setItemLayout(R.layout.simple_item)
             .setItems(items)
             .setLayoutManager(LinearLayoutManager(this))
-            .onBindData<SimpleBindingItemBinding> { binding, item ->
+            .onBindData<SimpleItemBinding> { binding, item ->
                 binding.item = item
             }
             .onItemClick { clickedView, position ->
@@ -40,9 +37,9 @@ class KotlinExampleActivity : AppCompatActivity() {
             .into(recyclerView)
             .itemListEditor
 
-        var count = 0
+        var count = items.size
         testButton.setOnClickListener {
-            listEditor.addItem(SimpleItem("New Item ${count++}"))
+            listEditor.addItem(SimpleItem("New Item", "item ${count++}"))
         }
     }
 }
