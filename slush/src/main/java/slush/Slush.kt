@@ -28,7 +28,7 @@ sealed class Slush {
         }
 
         fun setItems(items: List<ITEM>) = apply {
-            singleTypeList = SingleTypeList.NormalListWrapper(items)
+            singleTypeList = SingleTypeList.NormalList(items)
         }
 
         fun setLayoutManager(layoutManager: RecyclerView.LayoutManager) = apply {
@@ -85,7 +85,7 @@ sealed class Slush {
                 onBindDataListener,
                 onItemClickListener,
                 diffCallback,
-                singleTypeList ?: SingleTypeList.NormalListWrapper(listOf())
+                singleTypeList ?: SingleTypeList.NormalList(listOf())
             )
             recyclerView.adapter = adapter
 
