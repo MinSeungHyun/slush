@@ -3,6 +3,8 @@ package slush
 import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import slush.listeners.OnBindDataListener
 import slush.listeners.OnBindListener
@@ -29,6 +31,10 @@ sealed class Slush {
 
         fun setItems(items: List<ITEM>) = apply {
             singleTypeList = SingleTypeList.NormalList(items)
+        }
+
+        fun setItems(items: LiveData<List<ITEM>>, lifecycleOwner: LifecycleOwner) = apply {
+            singleTypeList = SingleTypeList.LiveDataList(items, lifecycleOwner)
         }
 
         fun setLayoutManager(layoutManager: RecyclerView.LayoutManager) = apply {

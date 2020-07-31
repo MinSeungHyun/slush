@@ -1,5 +1,9 @@
 package slush.utils
 
 interface ListWrapper<ITEM> {
-    var items: List<ITEM>
+    fun getItems(): List<ITEM>
+}
+
+interface MutableListWrapper<ITEM> : ListWrapper<ITEM> {
+    fun setItems(items: List<ITEM>)
 }

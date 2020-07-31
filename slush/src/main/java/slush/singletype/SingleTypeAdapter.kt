@@ -7,7 +7,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import slush.AdapterItemListEditor
 import slush.listeners.OnBindDataListener
 import slush.listeners.OnBindListener
 import slush.listeners.OnItemClickListener
@@ -22,7 +21,13 @@ class SingleTypeAdapter<ITEM> internal constructor(
     private val diffCallback: SlushDiffCallback<ITEM>?,
     internal val singleTypeList: SingleTypeList<ITEM>
 ) : RecyclerView.Adapter<BaseSingleTypeViewHolder<ITEM>>() {
-    internal val itemListEditor by lazy { AdapterItemListEditor(this) }
+    private var oldItems = singleTypeList.getItems()
+
+    init {
+        if (singleTypeList is SingleTypeList.LiveDataList) {
+            singleTypeList.observe { setItems(it) }
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseSingleTypeViewHolder<ITEM> {
         val inflater = LayoutInflater.from(context)
@@ -37,20 +42,23 @@ class SingleTypeAdapter<ITEM> internal constructor(
     }
 
     override fun onBindViewHolder(holder: BaseSingleTypeViewHolder<ITEM>, position: Int) {
-        holder.bind(position, singleTypeList.items[position])
+        holder.bind(position, singleTypeList.getItems()[position])
     }
 
-    override fun getItemCount(): Int = singleTypeList.items.size
+    override fun getItemCount(): Int = singleTypeList.getItems().size
 
     internal fun setItems(items: List<ITEM>) {
         if (diffCallback != null) {
-            diffCallback.setOldItems(singleTypeList.items)
+            diffCallback.setOldItems(oldItems)
             diffCallback.setNewItems(items)
             DiffUtil.calculateDiff(diffCallback).dispatchUpdatesTo(this)
         } else {
             notifyDataSetChanged()
         }
 
-        singleTypeList.items = items
+        oldItems = items
+
+        if (singleTypeList is SingleTypeList.NormalList<ITEM>)
+            singleTypeList.setItems(items)
     }
 }

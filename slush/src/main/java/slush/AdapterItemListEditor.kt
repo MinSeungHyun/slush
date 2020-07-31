@@ -1,9 +1,10 @@
 package slush
 
 import slush.singletype.SingleTypeAdapter
+import slush.singletype.SingleTypeList
 
-class AdapterItemListEditor<ITEM>(private val adapter: SingleTypeAdapter<ITEM>)
-    : BaseItemListEditor<ITEM>(adapter.singleTypeList) {
+class AdapterItemListEditor<ITEM>(private val adapter: SingleTypeAdapter<ITEM>) :
+    BaseItemListEditor<ITEM>(adapter.singleTypeList as SingleTypeList.NormalList<ITEM>) {
 
     override fun addItem(item: ITEM) {
         super.addItem(item)
