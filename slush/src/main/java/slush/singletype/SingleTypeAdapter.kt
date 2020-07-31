@@ -21,11 +21,14 @@ class SingleTypeAdapter<ITEM> internal constructor(
     private val diffCallback: SlushDiffCallback<ITEM>?,
     internal val singleTypeList: SingleTypeList<ITEM>
 ) : RecyclerView.Adapter<BaseSingleTypeViewHolder<ITEM>>() {
+
     private var oldItems = singleTypeList.getItems()
 
     init {
         if (singleTypeList is SingleTypeList.LiveDataList) {
             singleTypeList.observe { setItems(it) }
+        } else if (singleTypeList is SingleTypeList.ObservableItemsList) {
+            singleTypeList.observe(this)
         }
     }
 

@@ -1,5 +1,6 @@
 package slush.singletype
 
+import androidx.databinding.ObservableList
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -26,5 +27,38 @@ sealed class SingleTypeList<ITEM> : ListWrapper<ITEM> {
         }
 
         override fun getItems(): List<ITEM> = itemsLiveData.value ?: listOf()
+    }
+
+    class ObservableItemsList<ITEM>(private val observableList: ObservableList<ITEM>) : SingleTypeList<ITEM>() {
+        override fun getItems(): List<ITEM> = observableList
+
+        internal fun observe(adapter: SingleTypeAdapter<ITEM>) = observableList.addOnListChangedCallback(object :
+            ObservableList.OnListChangedCallback<ObservableList<ITEM>>() {
+
+            override fun onChanged(sender: ObservableList<ITEM>?) {
+                adapter.notifyDataSetChanged()
+            }
+
+            override fun onItemRangeChanged(sender: ObservableList<ITEM>?, positionStart: Int, itemCount: Int) {
+                adapter.notifyItemRangeChanged(positionStart, itemCount)
+            }
+
+            override fun onItemRangeInserted(sender: ObservableList<ITEM>?, positionStart: Int, itemCount: Int) {
+                adapter.notifyItemRangeInserted(positionStart, itemCount)
+            }
+
+            override fun onItemRangeMoved(
+                sender: ObservableList<ITEM>?,
+                fromPosition: Int,
+                toPosition: Int,
+                itemCount: Int
+            ) {
+                adapter.notifyDataSetChanged()
+            }
+
+            override fun onItemRangeRemoved(sender: ObservableList<ITEM>?, positionStart: Int, itemCount: Int) {
+                adapter.notifyItemRangeRemoved(positionStart, itemCount)
+            }
+        })
     }
 }
