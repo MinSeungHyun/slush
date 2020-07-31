@@ -12,6 +12,7 @@ import slush.listeners.OnBindListener
 import slush.listeners.OnItemClickListener
 import slush.singletype.SingleTypeAdapter
 import slush.singletype.SingleTypeList
+import slush.utils.BasicDiffCallback
 import slush.utils.SlushDiffCallback
 import slush.utils.SlushException
 
@@ -34,7 +35,12 @@ sealed class Slush {
             singleTypeList = SingleTypeList.NormalList(items)
         }
 
-        fun setItems(items: LiveData<List<ITEM>>, lifecycleOwner: LifecycleOwner) = apply {
+        fun setItems(
+            items: LiveData<List<ITEM>>,
+            lifecycleOwner: LifecycleOwner,
+            useBasicDiffCallback: Boolean = true
+        ) = apply {
+            if (useBasicDiffCallback) setDiffCallback(BasicDiffCallback())
             singleTypeList = SingleTypeList.LiveDataList(items, lifecycleOwner)
         }
 
