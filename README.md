@@ -17,7 +17,7 @@ _The goal of this project is to make RecyclerView, which is not very complicated
 - [x] ItemClickListener
 - [x] DataBinding
 - [x] DiffCallback
-- [x] ObservableArrayListddsfxgv
+- [x] ObservableArrayList
 - [x] LiveData
 - [ ] MultiType Adapter
 - [ ] (Divider)ItemDecoration
@@ -29,7 +29,7 @@ Add a dependency below at your build.gradle(app)
 
 ```groovy
 dependencies {
-    implementation 'in.seunghyun:slush:1.1.1'
+    implementation 'in.seunghyun:slush:1.2.0'
 }
 ```
 
@@ -79,6 +79,36 @@ You should change `onBind` part to `onBindData` to use data binding.
 
 And put your [generated binding class](https://developer.android.com/topic/libraries/data-binding/generated-binding) into `SimpleItemBinding` part.
 
+## LiveData, ObservableList
+
+If you use LiveData or ObservableList, you don't need to use `ItemListEditor` because slush will automatically observe the list and update RecyclerView.
+
+### LiveData
+
+```kotlin
+val itemsLiveData = MutableLiveData<List<SimpleItem>>()
+
+Slush.SingleType<SimpleItem>()
+    // Omit intermediate code
+    .setItems(itemsLiveData, lifecycleOwner)
+    .into(recyclerView)
+```
+
+[Full code](https://github.com/MinSeungHyun/slush/blob/master/samples/src/main/java/com/example/slush/example/LiveDataExampleActivity.kt)
+
+### ObservableList
+
+```kotlin
+observableItems = ObservableArrayList<SimpleItem>()
+
+Slush.SingleType<SimpleItem>()
+    // Omit intermediate code
+    .setItems(observableItems)
+    .into(recyclerView)
+```
+
+[Full code](https://github.com/MinSeungHyun/slush/blob/master/samples/src/main/java/com/example/slush/example/ObservableListExampleActivity.kt)
+
 ## Options
 
 ### setItems
@@ -111,7 +141,7 @@ You can also use custom DiffCallback by inheriting `SlushDiffCallback`.
 
 ## Samples
 
-You can also see the sample codes [here](https://github.com/MinSeungHyun/slush/tree/master/samples/src/main/java/com/example/slush).
+You can also see the sample codes [here](https://github.com/MinSeungHyun/slush/tree/master/samples/src/main/java/com/example/slush/example).
 
 ## License
 

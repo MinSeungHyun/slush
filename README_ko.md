@@ -17,8 +17,8 @@ _이 프로젝트의 목표는 엄청 복잡하지 않은 RecyclerView는 슬러
 - [x] ItemClickListener
 - [x] DataBinding
 - [x] DiffCallback
-- [ ] ObservableArrayList
-- [ ] LiveData
+- [x] ObservableArrayList
+- [x] LiveData
 - [ ] MultiType Adapter
 - [ ] (Divider)ItemDecoration
 - [ ] Swipe option
@@ -29,7 +29,7 @@ build.gradle(app)에 아래 dependency를 추가해주세요.
 
 ```groovy
 dependencies {
-    implementation 'in.seunghyun:slush:1.1.1'
+    implementation 'in.seunghyun:slush:1.2.0'
 }
 ```
 
@@ -79,6 +79,36 @@ val itemListEditor = result.itemListEditor
 
 그리고 `SimpleItemBinding` 부분에 [생성된 바인딩 클래스](https://developer.android.com/topic/libraries/data-binding/generated-binding)를 넣어주면 됩니다.
 
+## LiveData, ObservableList
+
+LiveData 또는 ObservableList를 사용한다면, 슬러시가 자동으로 리스트를 관찰하고 RecyclerView를 업데이트해주기 때문에 `ItemListEditor`를 사용할 필요가 없습니다.
+
+### LiveData
+
+```kotlin
+val itemsLiveData = MutableLiveData<List<SimpleItem>>()
+
+Slush.SingleType<SimpleItem>()
+    // Omit intermediate code
+    .setItems(itemsLiveData, lifecycleOwner)
+    .into(recyclerView)
+```
+
+[전체 코드](https://github.com/MinSeungHyun/slush/blob/master/samples/src/main/java/com/example/slush/example/LiveDataExampleActivity.kt)
+
+### ObservableList
+
+```kotlin
+observableItems = ObservableArrayList<SimpleItem>()
+
+Slush.SingleType<SimpleItem>()
+    // Omit intermediate code
+    .setItems(observableItems)
+    .into(recyclerView)
+```
+
+[전체 코드](https://github.com/MinSeungHyun/slush/blob/master/samples/src/main/java/com/example/slush/example/ObservableListExampleActivity.kt)
+
 ## Options
 
 ### setItems
@@ -111,7 +141,7 @@ val itemListEditor = result.itemListEditor
 
 ## Samples
 
-[여기](https://github.com/MinSeungHyun/slush/tree/master/samples/src/main/java/com/example/slush)에서 샘플 코드를 볼 수 있습니다.
+[여기](https://github.com/MinSeungHyun/slush/tree/master/samples/src/main/java/com/example/slush/example)에서 샘플 코드를 볼 수 있습니다.
 
 ## License
 
