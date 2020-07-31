@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/testButton"
+        android:id="@+id/basicButton"
+        style="@style/BasicButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginVertical="8dp"
-        android:backgroundTint="@android:color/white"
-        android:text="@string/add_item"
-        android:textColor="@android:color/black" />
+        android:text="@string/basic_activity" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <Button
+        android:id="@+id/liveDataButton"
+        style="@style/BasicButtonStyle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/simple_item" />
+        android:layout_height="wrap_content"
+        android:text="@string/live_data_activity" />
+
+    <Button
+        android:id="@+id/observableListButton"
+        style="@style/BasicButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/observable_list_activity" />
 </LinearLayout>

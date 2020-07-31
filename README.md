@@ -17,8 +17,8 @@ _The goal of this project is to make RecyclerView, which is not very complicated
 - [x] ItemClickListener
 - [x] DataBinding
 - [x] DiffCallback
-- [ ] ObservableArrayList
-- [ ] LiveData
+- [x] ObservableArrayListddsfxgv
+- [x] LiveData
 - [ ] MultiType Adapter
 - [ ] (Divider)ItemDecoration
 - [ ] Swipe option

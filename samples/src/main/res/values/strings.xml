@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Slush</string>
-    <string name="add_item">Add an item</string>
+    <string name="basic_activity">Basic Example</string>
+    <string name="live_data_activity">LiveData Example</string>
+    <string name="observable_list_activity">ObservableList Example</string>
+    <string name="test_button">Test Button</string>
 </resources>
