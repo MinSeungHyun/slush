@@ -8,13 +8,14 @@ import slush.listeners.OnBindDataListener
 import slush.listeners.OnBindListener
 import slush.listeners.OnItemClickListener
 import slush.singletype.SingleTypeAdapter
+import slush.singletype.SingleTypeList
 import slush.utils.SlushDiffCallback
 import slush.utils.SlushException
 
 sealed class Slush {
     data class SingleType<ITEM>(
         private var layoutId: Int? = null,
-        private var items: List<ITEM>? = null,
+        private var singleTypeList: SingleTypeList<ITEM>? = null,
         private var layoutManager: RecyclerView.LayoutManager? = null,
         private var onBindListener: OnBindListener<ITEM>? = null,
         private var onBindDataListener: OnBindDataListener<ITEM>? = null,
@@ -27,7 +28,7 @@ sealed class Slush {
         }
 
         fun setItems(items: List<ITEM>) = apply {
-            this.items = items
+            singleTypeList = SingleTypeList.NormalListWrapper(items)
         }
 
         fun setLayoutManager(layoutManager: RecyclerView.LayoutManager) = apply {
@@ -84,7 +85,7 @@ sealed class Slush {
                 onBindDataListener,
                 onItemClickListener,
                 diffCallback,
-                ArrayList(items ?: listOf())
+                singleTypeList ?: SingleTypeList.NormalListWrapper(listOf())
             )
             recyclerView.adapter = adapter
 

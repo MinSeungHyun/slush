@@ -20,7 +20,7 @@ class SingleTypeAdapter<ITEM> internal constructor(
     private val onBindDataListener: OnBindDataListener<ITEM>?,
     private val onItemClickListener: OnItemClickListener?,
     private val diffCallback: SlushDiffCallback<ITEM>?,
-    internal val items: ArrayList<ITEM>
+    internal val singleTypeList: SingleTypeList<ITEM>
 ) : RecyclerView.Adapter<BaseSingleTypeViewHolder<ITEM>>() {
     internal val itemListEditor by lazy { AdapterItemListEditor(this) }
 
@@ -37,21 +37,20 @@ class SingleTypeAdapter<ITEM> internal constructor(
     }
 
     override fun onBindViewHolder(holder: BaseSingleTypeViewHolder<ITEM>, position: Int) {
-        holder.bind(position, items[position])
+        holder.bind(position, singleTypeList.items[position])
     }
 
-    override fun getItemCount(): Int = items.size
+    override fun getItemCount(): Int = singleTypeList.items.size
 
     internal fun setItems(items: List<ITEM>) {
         if (diffCallback != null) {
-            diffCallback.setOldItems(this.items)
+            diffCallback.setOldItems(singleTypeList.items)
             diffCallback.setNewItems(items)
             DiffUtil.calculateDiff(diffCallback).dispatchUpdatesTo(this)
         } else {
             notifyDataSetChanged()
         }
 
-        this.items.clear()
-        this.items.addAll(items)
+        singleTypeList.items = items
     }
 }

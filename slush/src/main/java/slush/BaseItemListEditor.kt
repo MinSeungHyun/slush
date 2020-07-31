@@ -1,6 +1,8 @@
 package slush
 
-open class BaseItemListEditor<ITEM>(private val items: ArrayList<ITEM>) : ItemListEditor<ITEM> {
+import slush.utils.ListWrapper
+
+open class BaseItemListEditor<ITEM>(private val list: ListWrapper<ITEM>) : ItemListEditor<ITEM> {
     override fun addItem(item: ITEM) = editList {
         add(item)
     }
@@ -18,7 +20,7 @@ open class BaseItemListEditor<ITEM>(private val items: ArrayList<ITEM>) : ItemLi
     }
 
     override fun removeItem(item: ITEM): Int {
-        val index = items.indexOf(item)
+        val index = list.items.indexOf(item)
         if (index >= 0) editList { removeAt(index) }
         return index
     }
@@ -50,5 +52,7 @@ open class BaseItemListEditor<ITEM>(private val items: ArrayList<ITEM>) : ItemLi
         add(toPosition, removedItem)
     }
 
-    private inline fun editList(block: MutableList<ITEM>.() -> Unit) = items.let(block)
+    private inline fun editList(block: MutableList<ITEM>.() -> Unit) {
+        list.items = list.items.toMutableList().apply(block)
+    }
 }
