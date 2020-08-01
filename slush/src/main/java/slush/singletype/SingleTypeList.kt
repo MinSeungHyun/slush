@@ -4,6 +4,7 @@ import androidx.databinding.ObservableList
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import slush.utils.ControllableObserver
 import slush.utils.ListWrapper
 import slush.utils.MutableListWrapper
 
@@ -29,36 +30,29 @@ sealed class SingleTypeList<ITEM> : ListWrapper<ITEM> {
         override fun getItems(): List<ITEM> = itemsLiveData.value ?: listOf()
     }
 
-    class ObservableItemsList<ITEM>(private val observableList: ObservableList<ITEM>) : SingleTypeList<ITEM>() {
+    class ObservableItemsList<ITEM>(private val observableList: ObservableList<ITEM>) :
+        SingleTypeList<ITEM>(), ControllableObserver {
+
+        private var observer: ObservableList.OnListChangedCallback<ObservableList<ITEM>>? = null
+        private var isObserving = false
+
         override fun getItems(): List<ITEM> = observableList
 
-        internal fun observe(adapter: SingleTypeAdapter<ITEM>) = observableList.addOnListChangedCallback(object :
-            ObservableList.OnListChangedCallback<ObservableList<ITEM>>() {
+        internal fun initializeObserver(observer: ObservableList.OnListChangedCallback<ObservableList<ITEM>>) {
+            this.observer = observer
+        }
 
-            override fun onChanged(sender: ObservableList<ITEM>?) {
-                adapter.notifyDataSetChanged()
+        override fun startObserving() {
+            if (!isObserving) {
+                observableList.addOnListChangedCallback(observer)
+                isObserving = true
             }
+        }
 
-            override fun onItemRangeChanged(sender: ObservableList<ITEM>?, positionStart: Int, itemCount: Int) {
-                adapter.notifyItemRangeChanged(positionStart, itemCount)
-            }
-
-            override fun onItemRangeInserted(sender: ObservableList<ITEM>?, positionStart: Int, itemCount: Int) {
-                adapter.notifyItemRangeInserted(positionStart, itemCount)
-            }
-
-            override fun onItemRangeMoved(
-                sender: ObservableList<ITEM>?,
-                fromPosition: Int,
-                toPosition: Int,
-                itemCount: Int
-            ) {
-                adapter.notifyDataSetChanged()
-            }
-
-            override fun onItemRangeRemoved(sender: ObservableList<ITEM>?, positionStart: Int, itemCount: Int) {
-                adapter.notifyItemRangeRemoved(positionStart, itemCount)
-            }
-        })
+        override fun stopObserving() {
+            observableList.removeOnListChangedCallback(observer)
+            isObserving = false
+        }
     }
 }
+
