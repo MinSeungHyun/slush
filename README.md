@@ -96,10 +96,19 @@ Slush.SingleType<SimpleItem>()
 
 [Full code](https://github.com/MinSeungHyun/slush/blob/master/samples/src/main/java/com/example/slush/example/LiveDataExampleActivity.kt)
 
+#### Furthermore
+
+[BasicDiffCallback](#setDiffCallback) is applied by default when using LiveData.  
+If you don't want to use DiffCallback, you can put `false` as the third argument of `setItems`
+
+```kotlin
+.setItems(itemsLiveData, lifecycleOwner, false)
+```
+
 ### ObservableList
 
 ```kotlin
-observableItems = ObservableArrayList<SimpleItem>()
+val observableItems = ObservableArrayList<SimpleItem>()
 
 Slush.SingleType<SimpleItem>()
     // Omit intermediate code
@@ -109,7 +118,24 @@ Slush.SingleType<SimpleItem>()
 
 [Full code](https://github.com/MinSeungHyun/slush/blob/master/samples/src/main/java/com/example/slush/example/ObservableListExampleActivity.kt)
 
+#### Furthermore
+
+Slush does not remove the observer automatically.  
+So you can use `ObserveController` to remove the observer.
+
+```kotlin
+val result = Slush.SingleType<SimpleItem>()
+    // Omit intermediate code
+    .setItems(observableItems)
+    .into(recyclerView)
+
+val observeController = ObserveController(result)
+observeController.stopObserving()
+```
+
 ## Options
+
+You can apply these options selectively.
 
 ### setItems
 

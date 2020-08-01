@@ -89,27 +89,53 @@ LiveData 또는 ObservableList를 사용한다면, 슬러시가 자동으로 리
 val itemsLiveData = MutableLiveData<List<SimpleItem>>()
 
 Slush.SingleType<SimpleItem>()
-    // Omit intermediate code
+    // 중간 코드 생략
     .setItems(itemsLiveData, lifecycleOwner)
     .into(recyclerView)
 ```
 
 [전체 코드](https://github.com/MinSeungHyun/slush/blob/master/samples/src/main/java/com/example/slush/example/LiveDataExampleActivity.kt)
 
+#### Furthermore
+
+LiveData를 사용할 때는 기본적으로 [BasicDiffCallback](#setDiffCallback)이 적용됩니다.  
+DiffCallback 사용을 원치 않는다면 `setItems`의 세 번째 인자로 `false`를 넣어주면 됩니다.
+
+```kotlin
+.setItems(itemsLiveData, lifecycleOwner, false)
+```
+
 ### ObservableList
 
 ```kotlin
-observableItems = ObservableArrayList<SimpleItem>()
+val observableItems = ObservableArrayList<SimpleItem>()
 
 Slush.SingleType<SimpleItem>()
-    // Omit intermediate code
+    // 중간 코드 생략
     .setItems(observableItems)
     .into(recyclerView)
 ```
 
 [전체 코드](https://github.com/MinSeungHyun/slush/blob/master/samples/src/main/java/com/example/slush/example/ObservableListExampleActivity.kt)
 
+#### Furthermore
+
+ObservableList를 사용할 때는 슬러시가 자동으로 observer를 제거해주지 않습니다.  
+그래서 observer를 제거 하기 위해서 아래와 같이 `ObserveController`를 사용할 수 있습니다.
+
+```kotlin
+val result = Slush.SingleType<SimpleItem>()
+    // 중간 코드 생략
+    .setItems(observableItems)
+    .into(recyclerView)
+
+val observeController = ObserveController(result)
+observeController.stopObserving()
+```
+
 ## Options
+
+선택적으로 적용할 수 있는 설정들입니다.
 
 ### setItems
 
