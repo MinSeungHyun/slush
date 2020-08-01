@@ -12,8 +12,7 @@ class AdapterAppliedResult<ITEM>(private val adapter: SingleTypeAdapter<ITEM>) {
     }
 
     internal fun getObserver(): ControllableObserver {
-        if (adapter.singleTypeList is SingleTypeList.ObservableItemsList)
-            return adapter.singleTypeList
-        else throw Exception()
+        if (adapter.singleTypeList is SingleTypeList.ObservableItemsList) return adapter.singleTypeList
+        else throw SlushException.ObserveControllerUnavailableException()
     }
 }
