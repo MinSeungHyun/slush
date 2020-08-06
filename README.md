@@ -29,7 +29,7 @@ Add a dependency below at your build.gradle(app)
 
 ```groovy
 dependencies {
-    implementation 'in.seunghyun:slush:1.2.1'
+    implementation 'in.seunghyun:slush:1.2.2'
 }
 ```
 
