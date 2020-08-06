@@ -10,12 +10,12 @@ class SingleTypeBindingViewHolder<ITEM>(
     private val onItemClickListener: OnItemClickListener?
 ) : BaseSingleTypeViewHolder<ITEM>(binding.root) {
 
-    override fun bind(position: Int, item: ITEM) {
+    override fun bind(item: ITEM) {
         onBindDataListener?.onBind(binding, item)
 
         onItemClickListener ?: return
         binding.root.setOnClickListener {
-            onItemClickListener.onItemClick(it, position)
+            onItemClickListener.onItemClick(it, layoutPosition)
         }
     }
 }

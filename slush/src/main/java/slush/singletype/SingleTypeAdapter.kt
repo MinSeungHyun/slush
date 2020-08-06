@@ -46,7 +46,7 @@ class SingleTypeAdapter<ITEM> internal constructor(
     }
 
     override fun onBindViewHolder(holder: BaseSingleTypeViewHolder<ITEM>, position: Int) {
-        holder.bind(position, singleTypeList.getItems()[position])
+        holder.bind(singleTypeList.getItems()[position])
     }
 
     override fun getItemCount(): Int = singleTypeList.getItems().size
