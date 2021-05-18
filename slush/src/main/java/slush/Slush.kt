@@ -88,6 +88,16 @@ sealed class Slush {
                 }
             })
 
+        @JvmName("onItemClickWithItem")
+        fun onItemClick(listener: (View, ITEM) -> Unit) = onItemClick(
+            object : OnItemClickListener {
+                override fun onItemClick(clickedView: View, position: Int) {
+                    singleTypeList?.getItems()?.get(position)?.let {
+                        listener(clickedView, it)
+                    }
+                }
+            })
+
         fun setDiffCallback(diffCallback: SlushDiffCallback<ITEM>) = apply {
             this.diffCallback = diffCallback
         }
