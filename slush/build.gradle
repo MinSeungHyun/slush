@@ -36,8 +36,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
     implementation "androidx.core:core-ktx:$androidKtxVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
-
-    implementation 'it.xabaras.android:recyclerview-swipedecorator:1.2.3'
 }
 
 apply plugin: 'com.github.dcendents.android-maven'
