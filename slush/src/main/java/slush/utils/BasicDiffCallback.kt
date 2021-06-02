@@ -1,8 +1,8 @@
 package slush.utils
 
-class BasicDiffCallback<ITEM> : SlushDiffCallback<ITEM>() {
-    private var oldItems = listOf<ITEM>()
-    private var newItems = listOf<ITEM>()
+open class BasicDiffCallback<ITEM> : SlushDiffCallback<ITEM>() {
+    internal var oldItems = listOf<ITEM>()
+    internal var newItems = listOf<ITEM>()
 
     override fun setOldItems(oldItems: List<ITEM>) {
         this.oldItems = oldItems

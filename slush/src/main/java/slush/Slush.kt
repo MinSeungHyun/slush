@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import slush.listeners.OnBindDataListener
 import slush.listeners.OnBindListener
+import slush.listeners.OnDiffCallback
 import slush.listeners.OnItemClickListener
 import slush.singletype.SingleTypeAdapter
 import slush.singletype.SingleTypeList
@@ -100,6 +101,16 @@ sealed class Slush {
 
         fun setDiffCallback(diffCallback: SlushDiffCallback<ITEM>) = apply {
             this.diffCallback = diffCallback
+        }
+
+        fun onDiffCallback(areItemsTheSame: OnDiffCallback<ITEM>) = apply {
+            this.diffCallback = BasicDiff(areItemsTheSame)
+        }
+
+        class BasicDiff<ITEM>(val callback: OnDiffCallback<ITEM>): BasicDiffCallback<ITEM>() {
+            override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                return callback.areSameItems(newItems[newItemPosition], oldItems[oldItemPosition])
+            }
         }
 
         fun into(recyclerView: RecyclerView): AdapterAppliedResult<ITEM> {
