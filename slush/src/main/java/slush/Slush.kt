@@ -9,9 +9,11 @@ import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import slush.listeners.OnBindDataListener
 import slush.listeners.OnBindListener
+import slush.listeners.OnDiffCallback
 import slush.listeners.OnItemClickListener
 import slush.singletype.SingleTypeAdapter
 import slush.singletype.SingleTypeList
+import slush.utils.BasicDiff
 import slush.utils.BasicDiffCallback
 import slush.utils.SlushDiffCallback
 import slush.utils.SlushException
@@ -88,8 +90,22 @@ sealed class Slush {
                 }
             })
 
+        @JvmName("onItemClickWithItem")
+        fun onItemClick(listener: (View, ITEM) -> Unit) = onItemClick(
+            object : OnItemClickListener {
+                override fun onItemClick(clickedView: View, position: Int) {
+                    singleTypeList?.getItems()?.get(position)?.let {
+                        listener(clickedView, it)
+                    }
+                }
+            })
+
         fun setDiffCallback(diffCallback: SlushDiffCallback<ITEM>) = apply {
             this.diffCallback = diffCallback
+        }
+
+        fun onDiffCallback(areItemsTheSame: OnDiffCallback<ITEM>) = apply {
+            this.diffCallback = BasicDiff(areItemsTheSame)
         }
 
         fun into(recyclerView: RecyclerView): AdapterAppliedResult<ITEM> {

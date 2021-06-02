@@ -1,8 +1,10 @@
 package slush.utils
 
-class BasicDiffCallback<ITEM> : SlushDiffCallback<ITEM>() {
-    private var oldItems = listOf<ITEM>()
-    private var newItems = listOf<ITEM>()
+import slush.listeners.OnDiffCallback
+
+open class BasicDiffCallback<ITEM> : SlushDiffCallback<ITEM>() {
+    internal var oldItems = listOf<ITEM>()
+    internal var newItems = listOf<ITEM>()
 
     override fun setOldItems(oldItems: List<ITEM>) {
         this.oldItems = oldItems
@@ -26,5 +28,17 @@ class BasicDiffCallback<ITEM> : SlushDiffCallback<ITEM>() {
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         return oldItems[oldItemPosition] == newItems[newItemPosition]
+    }
+}
+
+class BasicDiff<ITEM>(val callback: OnDiffCallback<ITEM>): BasicDiffCallback<ITEM>() {
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        return callback.areItemsTheSame(newItems[newItemPosition], oldItems[oldItemPosition])
+    }
+
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        return callback.areContentsTheSame(newItems[newItemPosition], oldItems[oldItemPosition])
+            ?: super.areContentsTheSame(oldItemPosition, newItemPosition)
+
     }
 }
