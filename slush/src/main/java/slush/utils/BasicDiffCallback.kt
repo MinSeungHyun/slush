@@ -38,5 +38,7 @@ class BasicDiff<ITEM>(val callback: OnDiffCallback<ITEM>): BasicDiffCallback<ITE
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         return callback.areContentsTheSame(newItems[newItemPosition], oldItems[oldItemPosition])
+            ?: super.areContentsTheSame(oldItemPosition, newItemPosition)
+
     }
 }
