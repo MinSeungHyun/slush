@@ -55,15 +55,18 @@ class SingleTypeAdapter<ITEM> internal constructor(
         if (diffCallback != null) {
             diffCallback.setOldItems(oldItems)
             diffCallback.setNewItems(items)
-            DiffUtil.calculateDiff(diffCallback).dispatchUpdatesTo(this)
-        } else {
-            notifyDataSetChanged()
         }
 
         oldItems = items
 
         if (singleTypeList is SingleTypeList.NormalList<ITEM>)
             singleTypeList.setItems(items)
+
+        if (diffCallback != null) {
+            DiffUtil.calculateDiff(diffCallback).dispatchUpdatesTo(this)
+        } else {
+            notifyDataSetChanged()
+        }
     }
 
     private fun getObserver() = object : ObservableList.OnListChangedCallback<ObservableList<ITEM>>() {
