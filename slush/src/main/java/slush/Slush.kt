@@ -13,6 +13,7 @@ import slush.listeners.OnDiffCallback
 import slush.listeners.OnItemClickListener
 import slush.singletype.SingleTypeAdapter
 import slush.singletype.SingleTypeList
+import slush.utils.BasicDiff
 import slush.utils.BasicDiffCallback
 import slush.utils.SlushDiffCallback
 import slush.utils.SlushException
@@ -105,12 +106,6 @@ sealed class Slush {
 
         fun onDiffCallback(areItemsTheSame: OnDiffCallback<ITEM>) = apply {
             this.diffCallback = BasicDiff(areItemsTheSame)
-        }
-
-        class BasicDiff<ITEM>(val callback: OnDiffCallback<ITEM>): BasicDiffCallback<ITEM>() {
-            override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                return callback.areSameItems(newItems[newItemPosition], oldItems[oldItemPosition])
-            }
         }
 
         fun into(recyclerView: RecyclerView): AdapterAppliedResult<ITEM> {
